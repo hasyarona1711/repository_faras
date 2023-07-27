@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href=" <?php echo base_url('css/main.css'); ?>">
 
     <title>e-Skripsi Unand</title>
     <style>
@@ -45,16 +46,16 @@
         <a style="color:#000;" class="navbar-brand" href="/">e-Skripsi<br>Universitas Andalas</a>
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link active" href="/">Home</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Koleksi
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Fakultas</a>
-                    <a class="dropdown-item" href="#">Jurusan</a>
-                    <a class="dropdown-item" href="#">Jenis Dokumen</a>
+                    <a class="dropdown-item" href="/koleksi/fakultas">Fakultas</a>
+                    <a class="dropdown-item" href="/koleksi/jurusan">Jurusan</a>
+                    <a class="dropdown-item" href="/koleksi/jenis_dokumen">Jenis Dokumen</a>
                 </div>
             </li>
             <li class="nav-item">
