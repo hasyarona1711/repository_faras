@@ -19,7 +19,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -30,10 +30,16 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 //Homepage
-$routes->get('/', 'Homepage::index');
-$routes->get('/koleksi/fakultas', 'Homepage::fakultas');
-$routes->get('/koleksi/jurusan', 'Homepage::jurusan');
-$routes->get('/koleksi/jenis_dokumen', 'Homepage::jenis_dokumen');
+$routes->get('/', 'Home::index');
+$routes->get('/panduan', 'Home::panduan');
+$routes->get('/tentang', 'Home::tentang');
+// $routes->get('/login', 'Login::index');
+// $routes->get('/lupapass', 'Login::lupa_pass');
+$routes->get('/koleksi/fakultas', 'Dokumen::fakultas');
+$routes->get('/koleksi/jurusan', 'Dokumen::jurusan');
+$routes->get('/koleksi/jenis_dokumen', 'Dokumen::jenis_dokumen');
+// $routes->post('/login/insert', 'Login::insert');
+$routes->get('/admin', 'Admin\Home::index');
 
 
 /*

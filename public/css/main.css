@@ -1,15 +1,74 @@
+a{
+    color: black;
+}
+.back{
+    background-color: #C6C6C6;
+    position: relative;
+    min-height: 100vh;
+}
+.navbar{
+    border-bottom: outset;
+    height: 75px;
+}
 .search-content{
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    padding-top: 20px;
     width: 982px;
 }
+.container-search{
+    width: auto;
+    background-color: white;
+    padding-bottom: 5px;
+}
 .welcome-sign{
-    margin-top: 40px;
+    padding-top: 40px;
 }
 .content{
     background-color: #C6C6C6;
-    height: 500px;
+    height: 100%;
+    padding-bottom: 75px;
 }
 .content-table{
     padding-top: 30px;
     width: 750px;
+}
+.loginbtn{
+    border:1px solid black; 
+    border-radius:20px;
+    background-color: #efefef;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.footermenu{
+    border-right: 1px solid grey;
+}
+.content-login{
+    /* background-color: #C6C6C6; */
+    padding-top: 110px;
+}
+.form-login{
+    margin-top: 30px;
+    width: 500px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: #e7e7e7;
+}
+.form-login td{
+    padding: 10px 30px;
+    text-align: center;
+}
+.content-panduan{
+    margin-top: 20px;
+}
+.isi-content-panduan{
+    margin-top: 50px;
+}
+.modal-body label{
+    padding: 5px 10px;
+}
+.modal-body select{
+    width: 189px;
 }

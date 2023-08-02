@@ -6,12 +6,14 @@ class Home extends BaseController
 {
     public function index()
     {
-        // return view('welcome_message');
-        echo ("home");
+        return view('pages/homepage');
     }
-
-    public function kontak($nama)
+    public function panduan()
     {
-        echo ("nama saya $nama");
+        return view('pages/panduan');
+    }
+    public function tentang()
+    {
+        return view('pages/tentang');
     }
 }
