@@ -5,18 +5,21 @@ namespace App\Controllers;
 use App\Models\FakultasModel;
 use App\Models\JurusanModel;
 use App\Models\JendokModel;
+use App\Models\TipeModel;
 
 class Dokumen extends BaseController
 {
     protected $fakultasModel;
     protected $jurusanModel;
     protected $jendokModel;
+    protected $tipeModel;
 
     public function __construct()
     {
         $this->fakultasModel = new FakultasModel();
         $this->jurusanModel = new JurusanModel();
         $this->jendokModel = new JendokModel();
+        $this->tipeModel = new TipeModel();
     }
     public function fakultas()
     {
@@ -46,5 +49,13 @@ class Dokumen extends BaseController
             'dokumen' => $jendok
         ];
         return view('pages/koleksi', $data);
+    }
+    public function add()
+    {
+        $tipeitem = $this->tipeModel->findAll();
+        $data = [
+            'tipeitem' => $tipeitem
+        ];
+        return view('user/upload', $data);
     }
 }

@@ -3,12 +3,12 @@
 
 <center>
     <div class="content">
-        <div class="container-search">
-            <div class="search-content">
+        <div class="kotak-search">
+            <div class="search-content" style="height: 110px;">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Advanced</button>
+                        <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#exampleModalCenter">Advanced</button>
                     </div>
                 </div>
                 <button class="btn btn-outline-secondary" type="button">Cari</button>

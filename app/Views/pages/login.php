@@ -7,7 +7,7 @@ echo $this->section('content');
         <div class="content-login">
             <h2>LOGIN</h2>
             <div class="form-login">
-                <form action="/user/login" method="post">
+                <form action="/login/doLogin" method="post">
                     <table>
                         <tbody>
                             <tr>

@@ -40,6 +40,12 @@ $routes->get('/koleksi/jurusan', 'Dokumen::jurusan');
 $routes->get('/koleksi/jenis_dokumen', 'Dokumen::jenis_dokumen');
 // $routes->post('/login/insert', 'Login::insert');
 $routes->get('/admin', 'Admin\Home::index');
+$routes->get('/admin/user', 'Admin\Users::index');
+$routes->post('save-user', 'Admin\Users::add');
+$routes->get('/admin/fakultas', 'Admin\Fakultas::index');
+$routes->get('/admin/jurusan', 'Admin\Jurusan::index');
+$routes->get('/admin/jenis_dokumen', 'Admin\Jendok::index');
+
 
 
 /*

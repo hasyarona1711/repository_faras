@@ -1,7 +1,13 @@
-<?php echo $this->extend('template');
+<?php echo $this->extend('templateadmin');
 echo $this->section('content'); ?>
 
-<h1>Hello World!</h1>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col">
+            <h1 class="display-4">Selamat Datang Admin</h1>
+        </div>
+    </div>
+</div>
 
 
 <?php echo $this->endSection(); ?>
