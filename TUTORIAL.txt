@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Cara mulai :
 1. install git bash.
 2. install composer. 
@@ -15,4 +16,23 @@ dan hapus tanda pagar di semua code dengan nama awal database.default.
 8. jika sudah, buka folder coba-ci nya di file explorer, dan klik kanan. jika sudah install git bash disana akan ada git bash here.
 9. setelah klik git bash here, ketik php spark serve. itu akan menjalankan server local bawaan dari codeigniter nya.
 10. setelah itu buka web browser dan ketikkan localhost:8080 lalu enter
+=======
+Cara mulai :
+1. install git bash.
+2. install composer. 
+3. download semua file dan folder yang ada di repository ini.
+4. setelah di download, unzip folder vendor.
+5. setelah itu copy file env dan rename menjadi .env
+6. setelah itu buka file .env dan ubah value CI_ENVIRONMENT menjadi development dan hapus tanda pagar nya.
+7. setelah itu ubah value
+database.default.hostname = localhost
+database.default database = repository_faras
+database.default.username = root
+database.default.password = 
+dan hapus tanda pagar di semua code dengan nama awal database.default.
+
+8. jika sudah, buka folder coba-ci nya di file explorer, dan klik kanan. jika sudah install git bash disana akan ada git bash here.
+9. setelah klik git bash here, ketik php spark serve. itu akan menjalankan server local bawaan dari codeigniter nya.
+10. setelah itu buka web browser dan ketikkan localhost:8080 lalu enter
+>>>>>>> 6084d9c660f1a7f35a90ca1a87ba3f28831daa87
 11. web terbuka.
