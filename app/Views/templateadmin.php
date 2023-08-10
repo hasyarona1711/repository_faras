@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link loginbtn" href="">Logout</a>
+                    <a class="nav-link loginbtn" href="/login/logout">Logout</a>
                 </li>
             </ul>
         </nav>

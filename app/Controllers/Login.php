@@ -28,13 +28,15 @@ class Login extends BaseController
         $password = $this->request->getVar('password');
 
         $user = $this->usersModel->find($username);
-        $jurusan = $this->jurusanModel->find($user['id_jurusan']);
-        $jenjang = $this->jenjangModel->find($jurusan['id_jenjang']);
 
         //jika admin
         if ($username == 'admin' && $password == 'admin') {
+            $session = session();
+            $session->set($username);
             return redirect()->to('/admin');
         } elseif ($password == $user['password']) {
+            $jurusan = $this->jurusanModel->find($user['id_jurusan']);
+            $jenjang = $this->jenjangModel->find($jurusan['id_jenjang']);
             $session = session();
             $login = [
                 'isLogin' => true,

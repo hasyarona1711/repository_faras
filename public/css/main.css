@@ -4,10 +4,23 @@
 a{
     color: black;
 }
+a:hover {
+    color: black;
+    text-decoration: none;
+  }
+  a:visited {
+    color: black;
+  }
+  .logo-eskripsi{
+    display: flex;
+  }
+  .logo-eskripsi img{
+    width: 10px;
+  }
 .back{
     background-color: #C6C6C6;
     position: relative;
-    min-height: 100vh;
+    min-height: 100%;
 }
 .navbar{
     border-bottom: outset;
@@ -34,6 +47,7 @@ a{
     background-color: #C6C6C6;
     height: 100%;
     padding-bottom: 75px;
+    min-height: 700px;
 }
 .content-table{
     padding-top: 30px;
@@ -78,4 +92,89 @@ footer{
 }
 .modal-body select{
     width: 189px;
+}
+.container-upload{
+    max-width: 900px;
+    margin: auto;
+    height: 100%;
+    padding-bottom: 75px;
+}
+.title-upload{
+    padding: 20px;
+}
+.progress-step{
+    padding: 30px;
+}
+.files-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid black;
+    padding: 5px;
+    margin: 2px;
+}
+.left p{
+    padding: 5px;
+    margin: 0;
+}
+.files-list .right a{
+    /* margin: 10px 5px; */
+    color: white;
+}
+.files-list button{
+    border-radius: 20px;
+    border: 2px solid white;
+    padding: 5px 7px;
+    color: white;
+}
+.settingbtn{
+    background-color: #446EAD;
+    padding: 7px;
+    border-radius: 20px;
+}
+.deletebtn{
+    background-color: #D9534F;
+    padding: 7px;
+    border-radius: 20px;
+}
+.pagination-form{
+    position: absolute;
+    width: 200px;
+    margin: auto 358px;
+    bottom: 100px;
+}
+#submitFile{
+    display: none;
+}
+#prevBtn{
+    border-radius: 20px;
+    width: 85px;
+}
+#nextBtn{
+    border-radius: 20px;
+    width: 75px;
+}
+.tab{
+    display: none;
+}
+.addauthor{
+    background-color: #446EAD;
+}
+.modal-title{
+    text-align: center;
+}
+.judul-dokumen{
+    margin-bottom: 70px;
+}
+.judul-dokumen h3{
+    margin-bottom: 75px;
+    margin-top: 30px;
+    text-align: center;
+}
+.container-files{
+    display: flex;
+    margin-bottom: 50px;
+}
+.left-files{
+    padding-right: 100px;
 }
