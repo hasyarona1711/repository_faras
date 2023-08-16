@@ -1,7 +1,7 @@
 var n = 0;
 window.addEventListener("load",()=>{
     const input = document.getElementById("uploaded-files");
-    const filecontainer = document.getElementById("file-container");
+    const filecontainer1 = document.getElementById("file-container");
     const namaarr = [];
     const sizearr = [];
 
@@ -105,10 +105,65 @@ window.addEventListener("load",()=>{
     //   })
     //   }
     // }
-      
+     
+    
+    
+    
+
+    // btnauthor.addEventListener('click',()=>{
+       
+    // })
+
+  
       
     
 })
+
+var i=1;
+function tambahAuthor() {
+  const authorcontainer = document.getElementById('author-container');
+  const jumlahauthor = document.getElementById('jumlahauthor');
+  const namadepan = document.querySelector('#nama-depan').value;
+  const namabelakang = document.querySelector('#nama-belakang').value;
+  const namalengkap = namadepan + ' ' + namabelakang;
+  document.getElementById('author-container').style.display = 'block';
+
+  //nambah list author
+  const authorlistElem = document.createElement('div');
+  authorlistElem.classList.add('authors-list');
+  const leftElem = document.createElement('div');
+  leftElem.classList.add('left-author');
+  const namaauthor = document.createElement('p');
+  namaauthor.innerHTML = namalengkap;
+  const inputnamadepan = document.createElement('input');
+  inputnamadepan.setAttribute('type','hidden');
+  inputnamadepan.setAttribute('name','namadepan'+i);
+  inputnamadepan.setAttribute('value',namadepan);
+  const inputnamabelakang = document.createElement('input');
+  inputnamabelakang.setAttribute('type','hidden');
+  inputnamabelakang.setAttribute('name','namabelakang'+i);
+  inputnamabelakang.setAttribute('value',namabelakang);
+  leftElem.append(namaauthor);
+  leftElem.append(inputnamadepan);
+  leftElem.append(inputnamabelakang);
+  authorlistElem.append(leftElem);
+  const rightElem = document.createElement('div');
+  rightElem.classList.add('right-author');
+  const buttonElem = document.createElement('button');
+  buttonElem.innerHTML = 'Delete';
+  rightElem.append(buttonElem);
+  authorlistElem.append(rightElem);
+  authorcontainer.append(authorlistElem);
+  var x = i;
+
+  buttonElem.addEventListener('click',()=>{
+    authorcontainer.removeChild(authorlistElem);
+    x = x-1;
+    jumlahauthor.setAttribute('value',x);
+  })
+  jumlahauthor.setAttribute('value',i);
+  i = i+1;  
+}
 
 
 function showModal(filename,filesize){
@@ -122,9 +177,18 @@ function showModal(filename,filesize){
 }
 
 
+
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
+function adaLampiran() {
+  var b = 1;
+  const adalampiran = document.getElementById("adalampiran");
+  adalampiran.setAttribute('value',b);
+}
+
+const valform = document.getElementById("listerror");
 function showTab(n) {
   // This function will display the specified tab of the form ...
   var x = document.getElementsByClassName("tab");
@@ -136,8 +200,29 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == 3) {
-    document.getElementById("submitFile").style.display = "inline";
     document.getElementById("nextBtn").style.display = "none";
+    if(!validateForm()){
+      if(nosubjek){
+        document.getElementById("validasi-form").style.display = "block";
+        const errorsubjek = document.createElement('p');
+        errorsubjek.innerHTML = "You haven't filled out the required Subjek field";
+        valform.append(errorsubjek);
+      }
+      if(nodetail){
+        document.getElementById("validasi-form").style.display = "block";
+        const errordetail = document.createElement('p');
+        errordetail.innerHTML = "You haven't filled out the required Detail field";
+        valform.append(errordetail);
+      }
+      if(nofile){
+        document.getElementById("validasi-upload").style.display = "block";
+      }
+    }else{
+      document.getElementById("submitFile").style.display = "inline";
+      document.getElementById("perintah-form").style.display = "none";
+      document.getElementById("validasi-sukses").style.display = "block";
+    }
+    
   } else {
     document.getElementById("nextBtn").style.display = "inline";
     document.getElementById("nextBtn").innerHTML = "Next";
@@ -147,6 +232,41 @@ function showTab(n) {
 //   fixStepIndicator(n)
 }
 
+var nodetail = false;
+var nosubjek = false;
+var nofile = false;
+function validateForm(){
+  var i, valid = true;
+  var x = document.getElementsByClassName("tab");
+  var tab1 = x[0].getElementsByTagName("select");
+  var tab2 = x[1].getElementsByTagName("input");
+  var tab3 = x[2].getElementsByTagName("select");
+console.log(tab3[1].value);
+  //cek apakah tab upload file sudah diisi
+  for (i = 0; i< tab1.length; i++){
+    if(tab1[i].value == ""){
+      nofile = true;
+      valid = false;
+    }
+  }
+  //cek apakah tab detail sudah diisi
+  for(i = 2; i<tab2.length; i++){
+    if(tab2[i].value == ""){
+      nodetail = true;
+      valid = false;
+    }
+  }
+
+  //cek apakah tab subjek sudah diisi
+  if(tab3[1].value == "" && tab3[2].value == ""){
+    nosubjek = true;
+    valid = false;
+  }
+  return valid;
+}
+
+
+
 function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
@@ -154,7 +274,6 @@ function nextPrev(n) {
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
-  console.log(currentTab);
   // if you have reached the end of the form... :
 //   if (currentTab >= x.length) {
 //     //...the form gets submitted:
@@ -176,22 +295,16 @@ function nextPrev(n) {
 //   }
 
 
-// const settingModal = document.getElementById('settingModal');
-//         if (settingModal) {
-//           settingModal.addEventListener('show.bs.modal', event => {
-//             // Button that triggered the modal
-//             const button = event.relatedTarget;
-//             // Extract info from data-bs-* attributes
-//             const recipient = button.getAttribute('data-whatever');
-//             // If necessary, you could initiate an Ajax request here
-//             // and then do the updating in a callback.
+function previewButton(){
+  document.getElementById("preview-button").style.backgroundColor = '#A2CD9C';
+  document.getElementById("details-button").style.backgroundColor = 'white';
+  document.getElementById("content-detail").style.display = "none";
+  document.getElementById("content-preview").style.display = "block";
+}
 
-//             // Update the modal's content.
-//             //const modalTitle = settingModal.querySelector('.modal-title');
-//             const modalTitle = document.getElementById('exampleModalLabel');
-//             const modalBodyInput = settingModal.querySelector('.modal-body input');
-
-//             modalTitle.innerHTML = recipient;
-//             modalBodyInput.value = recipient;
-//           })
-//         }
+function detailButton(){
+  document.getElementById("details-button").style.backgroundColor = '#A2CD9C';
+  document.getElementById("preview-button").style.backgroundColor = 'white';
+  document.getElementById("content-preview").style.display = "none";
+  document.getElementById("content-detail").style.display = "block";
+}

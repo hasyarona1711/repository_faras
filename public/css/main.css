@@ -1,6 +1,24 @@
 *{
     font-family: 'Poppins';
 }
+.rektorat-back{
+    background-image: url(../images/Rektorat.png);
+    background-size: cover;
+}
+.content-homepage{
+    height: 100%;
+    padding-bottom: 75px;
+    min-height: 685px; 
+}
+.loginbtn{
+    border:1px solid white;
+    width: 106px; 
+    color: white;
+    border: white;
+    text-align: center;
+    border-radius:20px;
+    background-color: #004F76;
+}
 a{
     color: black;
 }
@@ -8,23 +26,38 @@ a:hover {
     color: black;
     text-decoration: none;
   }
-  a:visited {
+a:visited {
     color: black;
-  }
-  .logo-eskripsi{
+}
+.logo-eskripsi{
     display: flex;
-  }
-  .logo-eskripsi img{
-    width: 10px;
-  }
+}
+.logo-eskripsi img{
+    height: 60px;
+    width: auto;
+    padding-top: 7px;
+    padding-right: 10px;
+}
 .back{
-    background-color: #C6C6C6;
+    background-color: white;
     position: relative;
     min-height: 100%;
 }
 .navbar{
-    border-bottom: outset;
+    
     height: 75px;
+}
+.dropdown-menu{
+    width: 60px;
+}
+.dropdown-menu a{
+    font-size: 15px;
+    padding: 0px;
+    text-align: center;
+}
+nav .nav-item{
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .search-content{
     /* margin-top: 20px; */
@@ -32,7 +65,7 @@ a:hover {
     width: 982px;
 }
 .kotak-search{
-    background-color: white;
+    background-color: #5EAA9D;
     padding-bottom: 10px;
 }
 .container-search{
@@ -41,23 +74,20 @@ a:hover {
     padding-bottom: 5px;
 }
 .welcome-sign{
-    padding-top: 40px;
+    padding-top: 75px;
+    margin-bottom: 75px;
 }
 .content{
-    background-color: #C6C6C6;
+    background-color: white;
     height: 100%;
     padding-bottom: 75px;
-    min-height: 700px;
+    min-height: 685px;
 }
 .content-table{
     padding-top: 30px;
     width: 750px;
 }
-.loginbtn{
-    border:1px solid black; 
-    border-radius:20px;
-    background-color: #efefef;
-}
+
 footer{
     position: absolute;
     bottom: 0;
@@ -68,14 +98,11 @@ footer{
 }
 .content-login{
     /* background-color: #C6C6C6; */
-    padding-top: 110px;
+    padding-top: 10px;
 }
 .form-login{
     margin-top: 30px;
-    width: 500px;
-    border: 1px solid grey;
-    border-radius: 10px;
-    background-color: #e7e7e7;
+    width: 500px;   
 }
 .form-login td{
     padding: 10px 30px;
@@ -83,6 +110,8 @@ footer{
 }
 .content-panduan{
     margin-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 .isi-content-panduan{
     margin-top: 50px;
@@ -100,59 +129,77 @@ footer{
     padding-bottom: 75px;
 }
 .title-upload{
-    padding: 20px;
+    background-color: #004F76;
+    color: white;
+    width: 100%;
+    height: 70px;
+}
+.title-upload h5{
+    padding-top: 20px;
 }
 .progress-step{
     padding: 30px;
 }
-.files-list{
+.authors-list{
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 2px solid black;
-    padding: 5px;
-    margin: 2px;
+    padding: 3px;
+    margin-bottom: 2px;
 }
-.left p{
+.left-author p{
     padding: 5px;
     margin: 0;
 }
-.files-list .right a{
-    /* margin: 10px 5px; */
-    color: white;
-}
-.files-list button{
+.authors-list button{
     border-radius: 20px;
     border: 2px solid white;
     padding: 5px 7px;
     color: white;
+    background-color: #D9534F;
 }
 .settingbtn{
     background-color: #446EAD;
     padding: 7px;
     border-radius: 20px;
+    color: white;
+    border: 1px solid white;
 }
 .deletebtn{
     background-color: #D9534F;
     padding: 7px;
     border-radius: 20px;
+    color: white;
+    border: 1px solid white;
 }
 .pagination-form{
     position: absolute;
-    width: 200px;
-    margin: auto 358px;
+    width: 500px;
+    margin: auto 210px;
     bottom: 100px;
 }
 #submitFile{
+    border-radius: 20px;
+    width: 150px;
     display: none;
+    background-color: #008505;
+    border: white;
+    color: white;
 }
 #prevBtn{
     border-radius: 20px;
     width: 85px;
+    background-color: #446EAD;
+    color: white;
+    border: white;
 }
 #nextBtn{
     border-radius: 20px;
     width: 75px;
+    background-color: #446EAD;
+    color: white;
+    border: white;
 }
 .tab{
     display: none;
@@ -175,6 +222,293 @@ footer{
     display: flex;
     margin-bottom: 50px;
 }
-.left-files{
-    padding-right: 100px;
+.files-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border: 1px solid black;
 }
+.left-files{
+    padding-right: 50px;
+}
+.right-files{
+    width: 100%;
+}
+.container-preview-detail h2{
+    width: 700px;
+    background-color: #EEEEEE;
+    height: 300px;
+}
+.container-file{
+    display: flex;
+    margin-bottom: 10px;
+}
+.gambarfile img{
+    width: 65px;
+}
+
+.detailfile p{
+    height: 10px;
+}
+.detailfile{
+    width: max-content;
+}
+.btncari{
+    width: 85px;
+    border-radius: 20px;
+    background-color: #004F76;
+    color: white;
+}
+.btnadvanced{
+    background-color: #FFAD59;
+    color: black;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border: 1px solid black;
+}
+.searchbar{
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border: 1px solid black;
+}
+.uploadbtn{ 
+    background-color:#004F76;
+    padding: 7px 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.dropdown-menu{
+    left: -20px;
+}
+.dropakun{
+    left: -40px;
+}
+.aksi-manage{
+    display: flex;
+}
+.btnlihat{
+    border: 1px solid white;
+    background-color: #004F76;
+}
+.btnedit{
+    border: 1px solid black;
+    background-color: #FFE380;
+}
+.btndelete{
+    border: 1px solid white;
+    background-color: #D9534F;
+}
+.aksi-manage a{
+    margin: auto 3px;
+    padding: 3px;
+    border-radius: 15px;
+    width: 75px;
+    text-align: center;
+}
+.tablemanage td{
+    padding: 15px 10px;
+}
+.btncancel{
+    background-color: #D9534F;
+    border-radius: 20px;
+    width: 75px;
+    border: 1px solid white;
+}
+#author-container{
+    display: none;
+    border: 1px solid white;
+    height: 100px;
+}
+#subsubjek1{
+    display: none;
+}
+#subsubjek2{
+    display: none;
+}
+.container-validasi{
+    width: 500px;
+    /* background-color: #FFE380; */
+    margin-left: 200px;
+}
+.isivalform{
+    width: 100%;
+    background-color: #FFC080;
+    display: flex;
+    align-items: center;
+}
+.isivalform p{
+    margin: 3px;
+}
+.isivalfile{
+    width: 100%;
+    background-color: #FFC080;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+.isivalfile p{
+    margin: 3px;
+}
+.validasi-form{
+    display: none;
+}
+.validasi-upload{
+    display: none;
+}
+.validasi-sukses{
+    display: none;
+}
+.listerror{
+    flex-direction: row;
+}
+.berhasil{
+    width: 500px;
+    background-color: #D1FFCA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 50px;
+}
+.berhasil p{
+    margin-top: 15px;
+}
+.container-preview{
+    width: 600px;
+    height: 300px;
+    margin: 50px 415px;
+    background-color: #A2CD9C;
+}
+.button-preview{
+    display: flex;
+    width: 600px;
+}
+.button-preview button{
+    width:300px;
+    border-radius: 10px;
+    margin-top: -10px;
+    padding: 5px;
+    background-color: white;
+}
+.content-detail{
+    display: none;
+}
+.content-preview{
+    display: none;
+}
+ul.form-stepper {
+    counter-reset: section;
+    margin-bottom: 3rem;
+}
+ul.form-stepper .form-stepper-circle {
+    position: relative;
+}
+ul.form-stepper .form-stepper-circle span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+.form-stepper-horizontal {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+ul.form-stepper > li:not(:last-of-type) {
+    margin-bottom: 0.625rem;
+    -webkit-transition: margin-bottom 0.4s;
+    -o-transition: margin-bottom 0.4s;
+    transition: margin-bottom 0.4s;
+}
+.form-stepper-horizontal > li:not(:last-of-type) {
+    margin-bottom: 0 !important;
+}
+.form-stepper-horizontal li {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.form-stepper-horizontal li:not(:last-child):after {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    height: 1px;
+    content: "";
+    top: 32%;
+}
+.form-stepper-horizontal li:after {
+    background-color: #dee2e6;
+}
+.form-stepper-horizontal li.form-stepper-completed:after {
+    background-color: #4da3ff;
+}
+.form-stepper-horizontal li:last-child {
+    flex: unset;
+}
+ul.form-stepper li a .form-stepper-circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    line-height: 1.7rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 50%;
+}
+.form-stepper .form-stepper-active .form-stepper-circle {
+    background-color: #4361ee !important;
+    color: #fff;
+}
+.form-stepper .form-stepper-active .label {
+    color: #4361ee !important;
+}
+.form-stepper .form-stepper-active .form-stepper-circle:hover {
+    background-color: #4361ee !important;
+    color: #fff !important;
+}
+.form-stepper .form-stepper-unfinished .form-stepper-circle {
+    background-color: #f8f7ff;
+}
+.form-stepper .form-stepper-completed .form-stepper-circle {
+    background-color: #0e9594 !important;
+    color: #fff;
+}
+.form-stepper .form-stepper-completed .label {
+    color: #0e9594 !important;
+}
+.form-stepper .form-stepper-completed .form-stepper-circle:hover {
+    background-color: #0e9594 !important;
+    color: #fff !important;
+}
+.form-stepper .form-stepper-active span.text-muted {
+    color: #fff !important;
+}
+.form-stepper .form-stepper-completed span.text-muted {
+    color: #fff !important;
+}
+.form-stepper .label {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+.form-stepper a {
+    cursor: default;
+}
+
+
+

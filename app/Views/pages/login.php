@@ -4,6 +4,19 @@ echo $this->section('content');
 
 <div class="content">
     <center>
+        <div class="kotak-search">
+            <div class="search-content" style="height: 110px;">
+                <form action="/dokumen/search" method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control searchbar" placeholder="Search..." name="keyword">
+                        <div class="input-group-append">
+                            <button class="btn btnadvanced" type="button" data-toggle="modal" data-target="#exampleModalCenter">Advanced</button>
+                        </div>
+                    </div>
+                    <button class="btn btncari" type="submit">Cari</button>
+                </form>
+            </div>
+        </div>
         <div class="content-login">
             <h2>LOGIN</h2>
             <div class="form-login">
@@ -22,7 +35,7 @@ echo $this->section('content');
                                 <td colspan="2"><a href="user/lupa_pass">Lupa Password?</a></td>
                             </tr>
                             <tr>
-                                <td colspan="2"><button style="border-radius: 10px; width:75px;">Login</button></td>
+                                <td colspan="2"><button class="loginbtn" style="width: 85px; padding:3px 10px;">Login</button></td>
                             </tr>
                         </tbody>
                     </table>
