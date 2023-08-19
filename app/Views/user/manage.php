@@ -39,7 +39,7 @@ echo $this->section('contentuser');
                             <td><?php echo $d['judul']; ?></td>
                             <td><?php echo $d['status']; ?></td>
                             <td class="aksi-manage">
-                                <a href="/dokumen/detail/<?php echo $d['id']; ?>" class="btnlihat" style="color:white;"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a>
+                                <a href="/dokumen/preview/<?php echo $d['id']; ?>" class="btnlihat" style="color:white;"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a>
                                 <a href="/dokumen/edit/<?php echo $d['id']; ?>" class="btnedit"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
                                 <a href="/dokumen/delete/<?php echo $d['id']; ?>" class="btndelete" style="color:white;" onclick="return confirm('apakah anda yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
                             </td>

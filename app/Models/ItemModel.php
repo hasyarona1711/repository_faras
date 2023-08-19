@@ -23,7 +23,7 @@ class ItemModel extends Model
         $builder->select('item.id, item.penulis, item.judul, item.tahun, jenis_dokumen.nama');
         $builder->join('jenis_dokumen', 'jenis_dokumen.id = item.id_jenis_dokumen');
         $builder->like('judul', $keyword);
-        $builder->orLike('kata_kunci', $keyword);
+        $builder->orLike('penulis', $keyword);
         return $builder;
     }
     public function advanced($array)
@@ -37,6 +37,7 @@ class ItemModel extends Model
     }
     public function dokfakultas($id)
     {
+
         $builder = $this->table('item');
         $builder->select('item.id, item.penulis, item.judul, item.tahun, item.id_jurusan, jurusan.id_fakultas, jenis_dokumen.nama');
         $builder->join('jenis_dokumen', 'jenis_dokumen.id = item.id_jenis_dokumen');

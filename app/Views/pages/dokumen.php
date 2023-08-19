@@ -1,4 +1,10 @@
 <?php echo $this->extend('template'); ?>
+<?php
+$x = 0;
+foreach ($dokumen as $dok) {
+    $x++;
+}
+?>
 <?php echo $this->section('content'); ?>
 <center>
     <div class="content">
@@ -17,7 +23,7 @@
         </div>
         <div class="content-table">
             <h4><?php echo $title; ?> <?php echo $keyword; ?></h4>
-            <h6>Menampilkan 10 dari 200 Dokumen</h6>
+            <h6>Menampilkan <?php echo $x; ?> dari <?php echo $x; ?> Dokumen</h6>
             <table class="table mt-3">
                 <tbody>
                     <?php
@@ -56,7 +62,7 @@
         </div>
         <div class="content-table">
             <h4><?php echo $title; ?> <?php echo $keyword; ?></h4>
-            <h6>Menampilkan 1-10 dari 200 Dokumen</h6>
+            <h6>Menampilkan <?php echo $x; ?> dari <?php echo $x; ?> Dokumen</h6>
             <table class="table mt-3">
                 <tbody>
                     <?php

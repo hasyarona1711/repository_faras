@@ -152,6 +152,9 @@ footer{
     padding: 5px;
     margin: 0;
 }
+.left-author{
+    background-color: white;
+}
 .authors-list button{
     border-radius: 20px;
     border: 2px solid white;
@@ -235,10 +238,14 @@ footer{
 .right-files{
     width: 100%;
 }
-.container-preview-detail h2{
+.container-preview-detail p{
     width: 700px;
-    background-color: #EEEEEE;
+    background-color: white;
     height: 300px;
+}
+.detailfile button p{
+    background-color: #004F76;
+    color: white;
 }
 .container-file{
     display: flex;
@@ -253,6 +260,7 @@ footer{
 }
 .detailfile{
     width: max-content;
+    min-width: 300px;
 }
 .btncari{
     width: 85px;
@@ -261,7 +269,7 @@ footer{
     color: white;
 }
 .btnadvanced{
-    background-color: #FFAD59;
+    background-color: #D9534F;
     color: black;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
@@ -317,8 +325,15 @@ footer{
 }
 #author-container{
     display: none;
+    min-height: fit-content;
+    max-height: 100px;
     border: 1px solid white;
     height: 100px;
+}
+#author-container-edit{
+    min-height: fit-content;
+    border: 1px solid white;
+    max-height: 100px;
 }
 #subsubjek1{
     display: none;
@@ -377,8 +392,8 @@ footer{
 }
 .container-preview{
     width: 600px;
-    height: 300px;
-    margin: 50px 415px;
+    height: 480px;
+    margin: 50px 415px 10px 415px;
     background-color: #A2CD9C;
 }
 .button-preview{
@@ -394,6 +409,9 @@ footer{
 }
 .content-detail{
     display: none;
+    font-size: 14px;
+    height: 450px;
+    overflow-y: auto;
 }
 .content-preview{
     display: none;
@@ -509,6 +527,71 @@ ul.form-stepper li a .form-stepper-circle {
 .form-stepper a {
     cursor: default;
 }
+#errorsub{
+    display: none;
+}
+#errordet{
+    display: none;
+}
+.preview-container-kecil{
+    background-color: white;
+    margin: 10px;
+    height: 430px;
+    padding-left: 5px;
+}
+.preview-container-kecil p{
+    font-size: 12px;
+}
+.penprev{
+    padding-left: 2px;
+}
+.container-kecil-judul{
+    height: min-content;
+}
+.files-kecil{
+    display: flex;
+    height: 30px;
+    margin-bottom: 2px;
+}
+.files-kecil button{
+    font-size: 11px;
+}
+.files-kecil img{
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+}
+.left-files-kecil{
+    width: max-content;
+    margin-right: 30px;
+}
+.preview-container-files{
+    display: flex;
+}
+.detail-right-files td{
+    font-size: 11px;
+}
+.judul-right-files{
+    width: 150px;
+}
+.ket-files p{
+    margin: 0 auto;
+}
+.title-container-kecil{
+    width: 400px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+}
+.abstrak-kecil{
+    
+    width: 400px;
+    height: 150px;
+    margin-bottom: 5px;
+}
+.list-upload-preview{
+    display: block;
+}
+
 
 
 

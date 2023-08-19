@@ -5,18 +5,22 @@ namespace App\Controllers;
 use App\Models\UsersModel;
 use App\Models\JurusanModel;
 use App\Models\JenjangModel;
+use App\Models\AttachmentModel;
+
 
 class Login extends BaseController
 {
     protected $usersModel;
     protected $jurusanModel;
     protected $jenjangModel;
+    protected $attModel;
 
     public function __construct()
     {
         $this->usersModel = new UsersModel();
         $this->jurusanModel = new JurusanModel();
         $this->jenjangModel = new JenjangModel();
+        $this->attModel = new AttachmentModel();
     }
     public function index()
     {
@@ -52,6 +56,15 @@ class Login extends BaseController
     {
         $session = session();
         $session->destroy();
+        //ketika logout, file yang sudah di upload dan di cancel dihapus
+        $db = db_connect();
+        $resultfile = $db->query('SELECT * FROM `att_files` WHERE id_item is null');
+        $datafile = $resultfile->getResultArray();
+        if ($datafile) {
+            foreach ($datafile as $data) {
+                $this->attModel->delete($data['id']);
+            }
+        }
         return redirect()->to('/');
     }
 }

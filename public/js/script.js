@@ -137,10 +137,12 @@ function tambahAuthor() {
   namaauthor.innerHTML = namalengkap;
   const inputnamadepan = document.createElement('input');
   inputnamadepan.setAttribute('type','hidden');
+  inputnamadepan.setAttribute('class','harus')
   inputnamadepan.setAttribute('name','namadepan'+i);
   inputnamadepan.setAttribute('value',namadepan);
   const inputnamabelakang = document.createElement('input');
   inputnamabelakang.setAttribute('type','hidden');
+  inputnamabelakang.setAttribute('class','harus')
   inputnamabelakang.setAttribute('name','namabelakang'+i);
   inputnamabelakang.setAttribute('value',namabelakang);
   leftElem.append(namaauthor);
@@ -202,22 +204,22 @@ function showTab(n) {
   if (n == 3) {
     document.getElementById("nextBtn").style.display = "none";
     if(!validateForm()){
+      console.log(nosubjek);
       if(nosubjek){
         document.getElementById("validasi-form").style.display = "block";
-        const errorsubjek = document.createElement('p');
-        errorsubjek.innerHTML = "You haven't filled out the required Subjek field";
-        valform.append(errorsubjek);
+        document.getElementById("errorsub").style.display = "block";
       }
       if(nodetail){
         document.getElementById("validasi-form").style.display = "block";
-        const errordetail = document.createElement('p');
-        errordetail.innerHTML = "You haven't filled out the required Detail field";
-        valform.append(errordetail);
+        document.getElementById("errordet").style.display = "block";
       }
       if(nofile){
         document.getElementById("validasi-upload").style.display = "block";
       }
+      
     }else{
+      document.getElementById("validasi-upload").style.display = "none";
+      document.getElementById("validasi-form").style.display = "none";
       document.getElementById("submitFile").style.display = "inline";
       document.getElementById("perintah-form").style.display = "none";
       document.getElementById("validasi-sukses").style.display = "block";
@@ -229,19 +231,26 @@ function showTab(n) {
     document.getElementById("submitFile").style.display = "none";
   }
   // ... and run a function that displays the correct step indicator:
-//   fixStepIndicator(n)
+//   fixStepIndicator(n
+  navigateToFormStep(n);
 }
 
 var nodetail = false;
 var nosubjek = false;
 var nofile = false;
 function validateForm(){
+  nodetail = false;
+  nosubjek = false;
+  nofile = false;
+  document.getElementById("validasi-form").style.display = "none";
+  document.getElementById("errorsub").style.display = "none";
+  document.getElementById("errordet").style.display = "none";
+  document.getElementById("validasi-upload").style.display = "none";
   var i, valid = true;
   var x = document.getElementsByClassName("tab");
   var tab1 = x[0].getElementsByTagName("select");
-  var tab2 = x[1].getElementsByTagName("input");
+  var tab2 = x[1].getElementsByClassName("harus");
   var tab3 = x[2].getElementsByTagName("select");
-console.log(tab3[1].value);
   //cek apakah tab upload file sudah diisi
   for (i = 0; i< tab1.length; i++){
     if(tab1[i].value == ""){
@@ -256,7 +265,6 @@ console.log(tab3[1].value);
       valid = false;
     }
   }
-
   //cek apakah tab subjek sudah diisi
   if(tab3[1].value == "" && tab3[2].value == ""){
     nosubjek = true;
@@ -265,6 +273,8 @@ console.log(tab3[1].value);
   return valid;
 }
 
+//untuk remove error biar gak double
+// valform.remove(document.getElementsByTagName("p"));
 
 
 function nextPrev(n) {
@@ -293,6 +303,30 @@ function nextPrev(n) {
 //     //... and adds the "active" class to the current step:
 //     x[n].className += " active";
 //   }
+
+function navigateToFormStep(stepNumber){
+  document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
+      formStepHeader.classList.add("form-stepper-unfinished");
+      formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
+  });
+  const formStepCircle = document.querySelector('li[step="' + stepNumber + '"]');
+  formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-completed");
+  formStepCircle.classList.add("form-stepper-active");
+  for (let index = 0; index < stepNumber; index++) {
+      const formStepCircle = document.querySelector('li[step="' + index + '"]');
+      if (formStepCircle) {
+          formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
+          formStepCircle.classList.add("form-stepper-completed");
+      }
+  }
+};
+
+function pergiKe(step){
+  var x = document.getElementsByClassName("tab");
+  x[currentTab].style.display = "none";
+  currentTab = step;
+  showTab(currentTab);
+}
 
 
 function previewButton(){

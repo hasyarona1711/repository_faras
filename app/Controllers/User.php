@@ -28,7 +28,7 @@ class User extends BaseController
     {
         return view('pages/lupa_pass');
     }
-    public function manage($iduser)
+    public function manage($iduser = '')
     {
         $datearr = array();
         $db = db_connect();

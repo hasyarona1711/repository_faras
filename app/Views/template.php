@@ -265,7 +265,7 @@ if ($session->get('isLogin')) {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Cari</button>
-                                    <button type="submit" class="btn btn-primary" onclick="this.form.reset();">Reset</button>
+                                    <button type="button" class="btn btn-primary" onclick="this.form.reset();">Reset</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </form>

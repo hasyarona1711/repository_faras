@@ -12,7 +12,7 @@ echo $this->section('contentuser');
             <div class="progress-step" style="width: 877px;">
                 <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
                     <!-- step upload -->
-                    <li class="form-stepper-active text-center form-stepper-list" step="1">
+                    <li class="form-stepper-active text-center form-stepper-list" step="0" onclick="pergiKe(0)">
                         <a class="mx-2">
                             <span class="form-stepper-circle">
                                 <span><i class="fa fa-upload" aria-hidden="true"></i></span>
@@ -21,7 +21,7 @@ echo $this->section('contentuser');
                         </a>
                     </li>
                     <!-- step detail -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                    <li class="form-stepper-unfinished text-center form-stepper-list" step="1" onclick="pergiKe(1)">
                         <a class="mx-2">
                             <span class="form-stepper-circle text-muted">
                                 <span><i class="fa fa-bars" aria-hidden="true"></i></span>
@@ -30,7 +30,7 @@ echo $this->section('contentuser');
                         </a>
                     </li>
                     <!-- step upload -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+                    <li class="form-stepper-unfinished text-center form-stepper-list" step="2" onclick="pergiKe(2)">
                         <a class="mx-2">
                             <span class="form-stepper-circle text-muted">
                                 <span><i class="fa fa-tag" aria-hidden="true"></i></span>
@@ -39,7 +39,7 @@ echo $this->section('contentuser');
                         </a>
                     </li>
                     <!-- step upload -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="4">
+                    <li class="form-stepper-unfinished text-center form-stepper-list" step="3" onclick="pergiKe(3)">
                         <a class="mx-2">
                             <span class="form-stepper-circle text-muted">
                                 <span><i class="fa fa-check" aria-hidden="true"></i></span>
@@ -99,10 +99,10 @@ echo $this->section('contentuser');
                     <div class="col-sm-7">
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="firstname_author" disabled>
+                                <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="firstname_author">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lastname_author" disabled>
+                                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lastname_author">
                             </div>
                         </div>
                     </div>
@@ -119,25 +119,25 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="nim" class="col-sm-2 col-form-label">NIM*</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="nim" name="nim">
+                        <input type="text" class="form-control harus" id="nim" name="nim">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="judul" class="col-sm-2 col-form-label">Judul*</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="judul" name="judul">
+                        <input type="text" class="form-control harus" id="judul" name="judul">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="abstrak" class="col-sm-2 col-form-label">Abstrak*</label>
                     <div class="col-sm-7">
-                        <input type="textarea" class="form-control" id="abstrak" name="abstrak">
+                        <input type="textarea" class="form-control harus" id="abstrak" name="abstrak">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="jendok" class="col-sm-2 col-form-label">Tipe Tesis*</label>
                     <div class="col-sm-7">
-                        <select class="custom-select" id="jendok" name="jendok">
+                        <select class="custom-select harus" id="jendok" name="jendok">
                             <option selected>Choose...</option>
                             <?php foreach ($jendok as $je) : ?>
                                 <option value="<?php echo $je['id']; ?>"><?php echo $je['nama']; ?></option>
@@ -148,7 +148,7 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="jenjang" class="col-sm-2 col-form-label">Jenjang*</label>
                     <div class="col-sm-7">
-                        <select class="custom-select" id="jenjang" name="jenjang">
+                        <select class="custom-select harus" id="jenjang" name="jenjang">
                             <option selected>Choose...</option>
                             <?php foreach ($jenjang as $j) : ?>
                                 <option value="<?php echo $j['id']; ?>"><?php echo $j['nama']; ?></option>
@@ -159,7 +159,7 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="fakultas" class="col-sm-2 col-form-label">Fakultas*</label>
                     <div class="col-sm-4">
-                        <select class="custom-select" id="fakultas" name="fakultas">
+                        <select class="custom-select harus" id="fakultas" name="fakultas">
                             <option selected>Choose...</option>
                             <?php foreach ($fakultas as $f) : ?>
                                 <option value="<?php echo $f['id']; ?>"><?php echo $f['nama']; ?></option>
@@ -168,7 +168,7 @@ echo $this->section('contentuser');
                     </div>
                     <label for="jurusan" class="col-sm-1 col-form-label">Jurusan*</label>
                     <div class="col-sm-5">
-                        <select class="custom-select" id="jurusan" name="jurusan">
+                        <select class="custom-select harus" id="jurusan" name="jurusan">
                             <option selected>Choose...</option>
                             <?php foreach ($jurusan as $ju) : ?>
                                 <option value="<?php echo $ju['id']; ?>"><?php echo $ju['nama']; ?></option>
@@ -179,13 +179,13 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="dospem" class="col-sm-2 col-form-label">Dosen Pembimbing*</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="dospem" name="dospem">
+                        <input type="text" class="form-control harus" id="dospem" name="dospem">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="status" class="col-sm-2 col-form-label">Status*</label>
                     <div class="col-sm-7">
-                        <select id="status" class="custom-select mr-sm-2" name="status">
+                        <select id="status" class="custom-select mr-sm-2 harus" name="status">
                             <option selected>Choose...</option>
                             <option value="published">Published</option>
                             <option value="in-press">In Press</option>
@@ -197,7 +197,7 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="tgl_publikasi" class="col-sm-2 col-form-label">Tanggal Publikasi*</label>
                     <div class="col-sm-7">
-                        <input type="date" class="form-control" id="tgl_publikasi" name="tgl_publikasi">
+                        <input type="date" class="form-control harus" id="tgl_publikasi" name="tgl_publikasi">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -215,7 +215,7 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="email" class="col-sm-2 col-form-label">Email*</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="email" name="email">
+                        <input type="text" class="form-control harus" id="email" name="email">
                     </div>
                 </div>
             </div>
@@ -242,8 +242,10 @@ echo $this->section('contentuser');
                     $('#selectsubjek').change(function() {
                         if ($(this).val() == 1) {
                             $('#subsubjek1').show();
+                            $('#subsubjek2').hide();
                         } else {
                             $('#subsubjek2').show();
+                            $('#subsubjek1').hide();
                         }
                     });
                 </script>
@@ -254,14 +256,15 @@ echo $this->section('contentuser');
                         <div class="isivalform" id="isivalform">
                             <img src="<?php echo base_url('images/warning.png'); ?>" alt="" width="50" height="50">
                             <div class="listerror" id="listerror">
-
+                                <p id="errorsub">You haven't filled out the required Subjek field</p>
+                                <p id="errordet">You haven't filled out the required Detail field</p>
                             </div>
                         </div>
                     </div>
                     <div class="validasi-upload" id="validasi-upload">
                         <div class="isivalfile" id="isivalfile">
                             <img src="<?php echo base_url('images/warning.png'); ?>" alt="" width="50" height="50">
-                            <p>You have not Uploaded any documents.</p>
+                            <p id="errorfile">You have not Uploaded any documents.</p>
                         </div>
                     </div>
                 </div>
@@ -491,5 +494,6 @@ echo $this->section('contentuser');
 
 <?php endforeach;
 } ?>
+
 
 <?php echo $this->endSection(); ?>

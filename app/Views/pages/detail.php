@@ -63,9 +63,9 @@
                 <?php endforeach; ?>
             </div>
             <div class="right-files">
-                <div class="container-preview">
-                    <h5>Judul file</h5>
-                    <h2>preview file</h2>
+                <div class="container-preview-detail">
+                    <h5>Abstrak</h5>
+                    <p><?php echo $dokumen['abstrak']; ?></p>
                 </div>
                 <div class="detail-dokumen">
                     <table>
@@ -125,10 +125,10 @@
     <div class="container">
         <div class="judul-dokumen">
             <h3><?php echo $dokumen['judul']; ?></h3>
-            <h5><?php foreach ($author as $auth) : ?>
-                    <?php echo $auth['nama_depan']; ?> <?php echo $auth['nama_belakang']; ?>,
-                <?php endforeach; ?>
-                <?php echo $jendok['nama']; ?>. Unand
+            <h5><?php echo $dokumen['penulis']; ?>,<?php foreach ($author as $auth) : ?>
+                <?php echo $auth['nama_depan']; ?> <?php echo $auth['nama_belakang']; ?>,
+            <?php endforeach; ?>
+            <?php echo $jendok['nama']; ?>. Unand
             </h5>
         </div>
         <div class="container-files">
@@ -168,8 +168,8 @@
             </div>
             <div class="right-files">
                 <div class="container-preview-detail">
-                    <h5>Judul file</h5>
-                    <h2>preview file</h2>
+                    <h5>Abstrak</h5>
+                    <p><?php echo $dokumen['abstrak']; ?></p>
                 </div>
                 <div class="detail-dokumen">
                     <table>
