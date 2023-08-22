@@ -46,4 +46,29 @@ class Home extends BaseController
     {
         return view('pages/tentang');
     }
+    public function panduan1()
+    {
+        return view('pages/panduanrepo');
+    }
+    public function panduan2()
+    {
+        return view('pages/panduanupload');
+    }
+    public function unduhfile($nama)
+    {
+        $data = [
+            'namafile' => $nama
+        ];
+        return view('pages/unduhfile', $data);
+    }
+    public function lihatfile($nama)
+    {
+
+        $filepath = "/public/files/$nama.pdf";
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $nama . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        readfile($filepath);
+    }
 }

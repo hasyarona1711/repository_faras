@@ -2,6 +2,7 @@
 $session = session();
 echo $this->extend('template');
 echo $this->section('contentuser');
+$user = $session->get('user');
 ?>
 <form action="/dokumen/saveFile" name="form-upload" method="post">
     <div class="content" style="background-color: white;">
@@ -54,6 +55,8 @@ echo $this->section('contentuser');
             <div class="tab">
                 <div class="form-tipe">
                     <div class="form-group row">
+                        <input type="hidden" id="jurusan-user" value="<?php echo $user['id_jurusan']; ?>">
+                        <input type="hidden" name="username" value="<?php echo $user['username']; ?>">
                         <label for="tipe-item" class="col-sm-2 col-form-label">Tipe Item</label>
                         <div class="col-sm-3">
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="tipe-item">
@@ -79,7 +82,7 @@ echo $this->section('contentuser');
                     <?php if (!empty($files)) { ?>
                         <input type="hidden" name="adalampiran" id="adalampiran">
                         <?php foreach ($files as $file) : ?>
-                            <div class="files-list">
+                            <div class="files-list mt-2">
                                 <div class="left">
                                     <p><?php echo $file['judul']; ?></p>
                                 </div>
@@ -258,6 +261,7 @@ echo $this->section('contentuser');
                             <div class="listerror" id="listerror">
                                 <p id="errorsub">You haven't filled out the required Subjek field</p>
                                 <p id="errordet">You haven't filled out the required Detail field</p>
+                                <p id="errorjur">Jurusan anda tidak sesuai dengan pilihan jurusan</p>
                             </div>
                         </div>
                     </div>

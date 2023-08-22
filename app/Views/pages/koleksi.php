@@ -30,6 +30,7 @@
                     <?php
                     $i = 1;
                     foreach ($dokumen as $d) : ?>
+
                         <tr>
                             <th><?php echo $i++; ?></th>
                             <?php if ($title == 'Fakultas') { ?>
@@ -39,7 +40,7 @@
                             <?php } else { ?>
                                 <td><a href="/dokumen/filejenis/<?php echo $d['id']; ?>"><?php echo $d['nama']; ?></a></td>
                             <?php } ?>
-                            <td>0 Dokumen</td>
+                            <td><?php echo $d['jumlah']; ?> Dokumen</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -88,7 +89,7 @@
                             <?php } else { ?>
                                 <td><a href="/dokumen/filejenis/<?php echo $d['id']; ?>"><?php echo $d['nama']; ?></a></td>
                             <?php } ?>
-                            <td>0 Dokumen</td>
+                            <td><?php echo $d['jumlah']; ?> Dokumen</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

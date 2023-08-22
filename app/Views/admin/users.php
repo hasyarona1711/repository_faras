@@ -25,7 +25,7 @@ echo $this->section('content'); ?>
                     <?php foreach ($users as $user) : ?>
                         <tr>
                             <th scope="row"><?php echo $i++ ?></th>
-                            <td><?php echo $user->nim; ?></td>
+                            <td><?php echo $user->username; ?></td>
                             <td><?php echo $user->nama; ?></td>
                             <td><?php echo $user->jurusan; ?></td>
                             <td><?php echo $user->email; ?></td>
@@ -59,8 +59,8 @@ echo $this->section('content'); ?>
             <div class="modal-body">
                 <form action="/save-user" method="post">
                     <div class="form-group">
-                        <label for="nim" class="col-form-label">NIM</label>
-                        <input type="text" class="form-control" id="nim" name="nim">
+                        <label for="username" class="col-form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
                     </div>
                     <div class="form-group">
                         <label for="nama" class="col-form-label">Nama</label>

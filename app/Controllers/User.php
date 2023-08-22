@@ -28,11 +28,11 @@ class User extends BaseController
     {
         return view('pages/lupa_pass');
     }
-    public function manage($iduser = '')
+    public function manage($username = '')
     {
         $datearr = array();
         $db = db_connect();
-        $result = $db->query("SELECT item.id, DATE(item.updated_at) as updated_at, item.judul, item.status, item.penulis, jenis_dokumen.nama  FROM item JOIN jenis_dokumen on item.id_jenis_dokumen=jenis_dokumen.id where item.id_user = $iduser");
+        $result = $db->query("SELECT item.id, DATE(item.updated_at) as updated_at, item.judul, item.status, item.penulis_depan, item.penulis_belakang, jenis_dokumen.nama  FROM item JOIN jenis_dokumen on item.id_jenis_dokumen=jenis_dokumen.id where item.username = '$username' order by item.id desc");
         $dokumen = $result->getResultArray();
         $data = [
             'dokumen' => $dokumen

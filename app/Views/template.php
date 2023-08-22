@@ -50,7 +50,7 @@ if ($session->get('isLogin')) {
                         <div class="dropdown-menu dropakun" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="">Profil</a>
                             <a class="dropdown-item" href="">Save search</a>
-                            <a class="dropdown-item" href="/user/manage/<?php echo $user['nim']; ?>">Manage Deposits</a>
+                            <a class="dropdown-item" href="/user/manage/<?php echo $user['username']; ?>">Manage Deposits</a>
                             <a class="dropdown-item" href="/login/logout">Logout</a>
                         </div>
                     </li>
@@ -173,7 +173,7 @@ if ($session->get('isLogin')) {
                                         <label for="jurusan" class="col-sm-3 col-form-label">Jurusan</label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" id="jurusan" style="width: 100%;" name="jurusan">
-                                                <option selected>Choose...</option>
+                                                <option value="" selected>Choose...</option>
                                                 <option value="1">Agribisnis</option>
                                                 <option value="2">Agroteknologi</option>
                                                 <option value="12">Kedokteran</option>
@@ -208,7 +208,7 @@ if ($session->get('isLogin')) {
                                         <label for="fakultas" class="col-sm-3 col-form-label">Fakultas</label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" id="fakultas" style="width: 100%;" name="fakultas">
-                                                <option selected>Choose...</option>
+                                                <option selected value="">Choose...</option>
                                                 <option value="1">Pertanian</option>
                                                 <option value="2">Kedokteran</option>
                                                 <option value="3">Hukum</option>
@@ -231,7 +231,7 @@ if ($session->get('isLogin')) {
                                         <label for="subjek" class="col-sm-3 col-form-label">Subjek</label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" id="subjek" style="width: 100%;" name="subjek">
-                                                <option selected>Choose...</option>
+                                                <option value="" selected>Choose...</option>
                                                 <option value="1">General Works</option>
                                                 <option value="2">Philosophy.Psychology.Religion</option>
                                             </select>
@@ -253,7 +253,7 @@ if ($session->get('isLogin')) {
                                         <label for="jendok" class="col-sm-3 col-form-label">Jenis Dokumen</label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" id="jendok" style="width: 100%;" name="jendok">
-                                                <option selected>Choose...</option>
+                                                <option value="" selected>Choose...</option>
                                                 <option value="1">Skripsi</option>
                                                 <option value="2">Disertasi</option>
                                                 <option value="3">Tesis</option>

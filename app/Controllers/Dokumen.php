@@ -45,10 +45,12 @@ class Dokumen extends BaseController
     }
     public function fakultas()
     {
-        $fakultas = $this->fakultasModel->findAll();
+        $db = db_connect();
+        $result = $db->query('SELECT fakultas.nama, fakultas.id, COUNT(item.id_fakultas) as jumlah FROM fakultas left JOIN item on fakultas.id = item.id_fakultas GROUP BY fakultas.id');
+        $datafile = $result->getResultArray();
         $data = [
             'title' => 'Fakultas',
-            'dokumen' => $fakultas
+            'dokumen' => $datafile
         ];
         return view('pages/koleksi', $data);
     }
@@ -64,17 +66,19 @@ class Dokumen extends BaseController
             'title' => 'Dokumen',
             'keyword' => 'Fakultas',
             'jumlah' => $jumlah,
-            'dokumen' => $result->paginate(10),
+            'dokumen' => $result->paginate(10, 'item'),
             'pager' => $this->itemModel->pager
         ];
         return view('pages/dokumen', $data);
     }
     public function jurusan()
     {
-        $jurusan = $this->jurusanModel->findAll();
+        $db = db_connect();
+        $result = $db->query('SELECT jurusan.nama, jurusan.id, COUNT(item.id_jurusan) as jumlah FROM jurusan left JOIN item on jurusan.id = item.id_jurusan GROUP BY jurusan.id');
+        $datafile = $result->getResultArray();
         $data = [
             'title' => 'Jurusan',
-            'dokumen' => $jurusan
+            'dokumen' => $datafile
         ];
         return view('pages/koleksi', $data);
     }
@@ -91,17 +95,19 @@ class Dokumen extends BaseController
             'title' => 'Dokumen Jurusan',
             'keyword' => $jurusan['nama'],
             'jumlah' => $jumlah,
-            'dokumen' => $result->paginate(10),
+            'dokumen' => $result->paginate(10, 'item'),
             'pager' => $this->itemModel->pager
         ];
         return view('pages/dokumen', $data);
     }
     public function jenis_dokumen()
     {
-        $jendok = $this->jendokModel->findAll();
+        $db = db_connect();
+        $result = $db->query('SELECT jenis_dokumen.nama, jenis_dokumen.id, COUNT(item.id_jenis_dokumen) as jumlah FROM jenis_dokumen left JOIN item on jenis_dokumen.id = item.id_jenis_dokumen GROUP BY jenis_dokumen.id');
+        $datafile = $result->getResultArray();
         $data = [
             'title' => 'Jenis Dokumen',
-            'dokumen' => $jendok
+            'dokumen' => $datafile
         ];
         return view('pages/koleksi', $data);
     }
@@ -118,7 +124,7 @@ class Dokumen extends BaseController
             'title' => 'Dokumen',
             'keyword' => $jendok['nama'],
             'jumlah' => $jumlah,
-            'dokumen' => $result->paginate(10),
+            'dokumen' => $result->paginate(10, 'item'),
             'pager' => $this->itemModel->pager
         ];
         return view('pages/dokumen', $data);
@@ -144,7 +150,6 @@ class Dokumen extends BaseController
             ];
             return view('user/upload', $data);
         }
-
         $tipeitem = $this->tipeModel->findAll();
         $jenjang = $this->jenjangModel->findAll();
         $fakultas = $this->fakultasModel->findAll();
@@ -173,7 +178,7 @@ class Dokumen extends BaseController
             'title' => ' Latest',
             'keyword' => 'Addition',
             'jumlah' => $jumlah,
-            'dokumen' => $result->paginate(10),
+            'dokumen' => $result->paginate(10, 'item'),
             'pager' => $this->itemModel->pager
         ];
         return view('pages/dokumen', $data);
@@ -183,7 +188,6 @@ class Dokumen extends BaseController
         $dokumen = $this->itemModel->find($iddokumen);
         $idjendok = $dokumen['id_jenis_dokumen'];
         $jenisdokumen = $this->jendokModel->find($idjendok);
-        $penulis = $dokumen['penulis'];
         $author = $this->authorModel->where('id_item', $iddokumen)->findAll();
         $att_files = $this->attModel->where('id_item', $iddokumen)->findAll();
         $idjurusan = $dokumen['id_jurusan'];
@@ -197,7 +201,6 @@ class Dokumen extends BaseController
         $data = [
             "dokumen" => $dokumen,
             "jendok" => $jenisdokumen,
-            "penulis" => $penulis,
             "author" => $author,
             "attachment" => $att_files,
             "jurusan" => $jurusan,
@@ -214,7 +217,7 @@ class Dokumen extends BaseController
         $data = [
             'title' => 'Search for',
             'keyword' => $keyword,
-            'dokumen' => $result->paginate(10),
+            'dokumen' => $result->paginate(10, 'item'),
             'pager' => $this->itemModel->pager
         ];
         return view('pages/dokumen', $data);
@@ -230,17 +233,19 @@ class Dokumen extends BaseController
         $jendok = $this->request->getVar('jendok');
         $array = [
             'judul' => $judul,
-            'penulis' => $author,
+            'penulis_depan' => $author,
+            'penulis_belakang' => $author,
             'id_jurusan' => $jurusan,
             'tahun' => $tahun,
             'dosen_pembimbing' => $dospem,
-            'id_jenis_dokumen' => $jendok
+            'id_jenis_dokumen' => $jendok,
+            'id_fakultas' => $fakultas
         ];
         $result = $this->itemModel->advanced($array);
         $data = [
             'title' => 'Advanced Search',
             'keyword' => 'Result',
-            'dokumen' => $result->paginate(10),
+            'dokumen' => $result->paginate(10, 'item'),
             'pager' => $this->itemModel->pager
         ];
         return view('pages/dokumen', $data);
@@ -295,10 +300,11 @@ class Dokumen extends BaseController
             'deskripsi' => $deskripsiFile
         ];
         $this->attModel->update($idfile, $data);
-        return redirect()->to('/dokumen/savelampiran');
+        return redirect()->to('/dokumen/add');
     }
     public function saveFile()
     {
+        $username = $this->request->getVar('username');
         $tgl = $this->request->getVar('tgl_publikasi');
         $date = new DateTime($tgl);
         $tahun = $date->format('Y');
@@ -319,6 +325,7 @@ class Dokumen extends BaseController
         $abstrak = $this->request->getVar('abstrak');
         $jenjang = $this->request->getVar('jenjang');
         $jurusan = $this->request->getVar('jurusan');
+        $fakultas = $this->request->getVar('fakultas');
         $jendok = $this->request->getVar('jendok');
         $dospem = $this->request->getVar('dospem');
         $status = $this->request->getVar('status');
@@ -335,9 +342,11 @@ class Dokumen extends BaseController
             'id_tipe' => $tipeitem,
             'id_jenjang' => $jenjang,
             'id_jurusan' => $jurusan,
+            'id_fakultas' => $fakultas,
             'id_sub_subjek' => $subsubjek,
             'id_jenis_dokumen' => $jendok,
-            'id_user' => $nim,
+            'username' => $username,
+            'nim' => $nim,
             'judul' => $judul,
             'abstrak' => $abstrak,
             'tahun' => $tahun,
@@ -397,7 +406,7 @@ class Dokumen extends BaseController
             $files = $this->attModel->where('id_item', $iditem)->findAll();
             $isUpload = true;
         }
-        $user = $this->usersModel->find($item['id_user']);
+        $user = $this->usersModel->find($item['username']);
         $juruser = $this->jurusanModel->find($user['id_jurusan']);
         $jenjang = $this->jenjangModel->find($juruser['id_jenjang']);
         $idsubsubjek = $this->subsubjekModel->find($item['id_sub_subjek']);
@@ -439,6 +448,7 @@ class Dokumen extends BaseController
         $db = db_connect();
         $result = $db->query('SELECT * FROM `att_files` WHERE id_item is null');
         $filesbaru = $result->getResultArray();
+        //ambil data untuk di edit
         $item = $this->itemModel->find($id);
         $att_files = $this->attModel->where('id_item', $id)->findAll();
         $idtipe = $item['id_tipe'];
@@ -454,7 +464,7 @@ class Dokumen extends BaseController
         $idjurusan = $item['id_jurusan'];
         $jurusan = $this->jurusanModel->find($idjurusan);
         $jurusanall = $this->jurusanModel->findAll();
-        $idfakultas = $jurusan['id_fakultas'];
+        $idfakultas = $item['id_fakultas'];
         $fakultas = $this->fakultasModel->find($idfakultas);
         $fakultasall = $this->fakultasModel->findAll();
         $status = $item['status'];
@@ -468,6 +478,7 @@ class Dokumen extends BaseController
         $data = [
             'dokumen' => $item,
             'files' => $att_files,
+            'filesbaru' => $filesbaru,
             'tipetesis' => $tipe_tesis,
             'tipeall' => $tipeall,
             'author' => $author,
@@ -488,15 +499,15 @@ class Dokumen extends BaseController
         // dd($data);
         return view('user/edit', $data);
     }
-    public function hapusfiles($id)
+    public function hapusfiles($idfile, $iditem)
     {
-        $this->attModel->delete($id);
-        return redirect()->to('/dokumen/edit');
+        $this->attModel->delete($idfile);
+        return redirect()->to('/dokumen/edit/' . $iditem);
     }
-    public function deleteauthor($id)
+    public function deleteauthor($idauthor, $iditem)
     {
-        $this->authorModel->delete($id);
-        return redirect()->to('/dokumen/edit');
+        $this->authorModel->delete($idauthor);
+        return redirect()->to('/dokumen/edit/' . $iditem);
     }
     public function updateItem($iditem)
     {
@@ -519,6 +530,7 @@ class Dokumen extends BaseController
         $abstrak = $this->request->getVar('abstrak');
         $jenjang = $this->request->getVar('jenjang');
         $jurusan = $this->request->getVar('jurusan');
+        $fakultas = $this->request->getVar('fakultas');
         $jendok = $this->request->getVar('jendok');
         $dospem = $this->request->getVar('dospem');
         $status = $this->request->getVar('status');
@@ -535,13 +547,14 @@ class Dokumen extends BaseController
         $tgl = $this->request->getVar('tgl_publikasi');
         $date = new DateTime($tgl);
         $tahun = $date->format('Y');
-        $this->itemModel->update([
+        $this->itemModel->update($iditem, [
             'id_tipe' => $tipeitem,
             'id_jenjang' => $jenjang,
             'id_jurusan' => $jurusan,
+            'id_fakultas' => $fakultas,
             'id_sub_subjek' => $subsubjek,
             'id_jenis_dokumen' => $jendok,
-            'id_user' => $nim,
+            'nim' => $nim,
             'judul' => $judul,
             'abstrak' => $abstrak,
             'tahun' => $tahun,
@@ -557,8 +570,12 @@ class Dokumen extends BaseController
         $db = db_connect();
         $resultfile = $db->query('SELECT * FROM `att_files` WHERE id_item is null');
         $datafile = $resultfile->getResultArray();
-        foreach ($datafile as $data) {
-            $this->attModel->update($data['id'], $iditem);
+        if ($datafile) {
+            foreach ($datafile as $data) {
+                $this->attModel->update($data['id'], [
+                    'id_item' => $iditem
+                ]);
+            }
         }
         //save author tambahan
         if ($jumlahauthor) {
@@ -572,5 +589,71 @@ class Dokumen extends BaseController
         }
         //setelah selesai edit
         return redirect()->to('/dokumen/preview');
+    }
+    public function tambahlampiran()
+    {
+        $submit = $this->request->getVar('submit-modal');
+        if ($submit) {
+            $iditem = $this->request->getVar('id_item');
+            $uploadfile = $this->request->getFile('upload-file');
+            $nama = $uploadfile->getName();
+            $namafile = substr($nama, 0, strrpos($nama, '.'));
+            $sizefile = $uploadfile->getSize();
+            $kontenFile = $this->request->getVar('konten-file');
+            $tipeFile = $this->request->getVar("tipe-file");
+            $deskripsiFile = $this->request->getVar("deskripsi-file");
+            $visibleFile = $this->request->getVar("visible-file");
+            $bahasaFile = $this->request->getVar("bahasa-file");
+            // upload file
+            $uploadfile->move('files');
+            $this->attModel->save([
+                // 'id_item' => 'NULL',
+                'judul' => $namafile,
+                'content' => $kontenFile,
+                'type' => $tipeFile,
+                'visible' => $visibleFile,
+                'language' => $bahasaFile,
+                'deskripsi' => $deskripsiFile,
+                'size' => $sizefile,
+                'file' => $uploadfile
+            ]);
+        }
+        return redirect()->to('/dokumen/edit/' . $iditem);
+    }
+    public function settinglampiran($iditem)
+    {
+        $idfile = $this->request->getVar('id-file');
+        $kontenFile = $this->request->getVar('konten-file');
+        $tipeFile = $this->request->getVar("tipe-file");
+        $deskripsiFile = $this->request->getVar("deskripsi-file");
+        $visibleFile = $this->request->getVar("visible-file");
+        $bahasaFile = $this->request->getVar("bahasa-file");
+        $data = [
+            'content' => $kontenFile,
+            'type' => $tipeFile,
+            'visible' => $visibleFile,
+            'language' => $bahasaFile,
+            'deskripsi' => $deskripsiFile
+        ];
+        $this->attModel->update($idfile, $data);
+        return redirect()->to('/dokumen/edit/' . $iditem);
+    }
+    public function settingfilebaru($iditem)
+    {
+        $idfile = $this->request->getVar('id-file');
+        $kontenFile = $this->request->getVar('konten-file');
+        $tipeFile = $this->request->getVar("tipe-file");
+        $deskripsiFile = $this->request->getVar("deskripsi-file");
+        $visibleFile = $this->request->getVar("visible-file");
+        $bahasaFile = $this->request->getVar("bahasa-file");
+        $data = [
+            'content' => $kontenFile,
+            'type' => $tipeFile,
+            'visible' => $visibleFile,
+            'language' => $bahasaFile,
+            'deskripsi' => $deskripsiFile
+        ];
+        $this->attModel->update($idfile, $data);
+        return redirect()->to('/dokumen/edit/' . $iditem);
     }
 }

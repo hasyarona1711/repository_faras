@@ -1,0 +1,1 @@
+<embed type="application/pdf" src="<?php echo base_url('/files'); ?>/<?php echo $namafile; ?>" width="600" height="400"></embed>

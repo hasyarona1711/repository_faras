@@ -50,7 +50,7 @@ if ($session->get('isLogin')) {
                         <div class="dropdown-menu dropakun" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="">Profil</a>
                             <a class="dropdown-item" href="">Save search</a>
-                            <a class="dropdown-item" href="/user/manage/<?php echo $user['nim']; ?>">Manage Deposits</a>
+                            <a class="dropdown-item" href="/user/manage/<?php echo $user['username']; ?>">Manage Deposits</a>
                             <a class="dropdown-item" href="/login/logout">Logout</a>
                         </div>
                     </li>
@@ -59,7 +59,7 @@ if ($session->get('isLogin')) {
             <?php echo $this->renderSection('contentuser'); ?>
 
             <footer>
-                <nav style="background: #ffffff; border-top:1px solid white; height:60px;" class="navbar">
+                <nav style="background: #ffffff; border-top:1px solid white; height:45px;" class="navbar">
                     <ul class="nav">
                         <li>
                             <p style="padding-top: 8px;">INFORMASI:</p>
@@ -122,7 +122,7 @@ if ($session->get('isLogin')) {
                     <?php echo $this->renderSection('content'); ?>
 
                     <footer>
-                        <nav style="background: #ffffff; border-top:1px solid white; height:60px;" class="navbar">
+                        <nav style="background: #ffffff; border-top:1px solid white; height:45px;" class="navbar">
                             <ul class="nav">
                                 <li>
                                     <p style="padding-top: 8px;">INFORMASI:</p>
@@ -173,8 +173,8 @@ if ($session->get('isLogin')) {
                                     <div class="form-group row">
                                         <label for="jurusan" class="col-sm-3 col-form-label">Jurusan</label>
                                         <div class="col-sm-9">
-                                            <select class="custom-select" id="jurusan" style="width: 100%;">
-                                                <option selected>Choose...</option>
+                                            <select class="custom-select" id="jurusan" style="width: 100%;" name="jurusan">
+                                                <option value="" selected>Choose...</option>
                                                 <?php foreach ($jurusan as $j) : ?>
                                                     <option value="<?php echo $j['id']; ?>"><?php echo $j['nama']; ?></option>
                                                 <?php endforeach; ?>
@@ -184,8 +184,8 @@ if ($session->get('isLogin')) {
                                     <div class="form-group row">
                                         <label for="fakultas" class="col-sm-3 col-form-label">Fakultas</label>
                                         <div class="col-sm-9">
-                                            <select class="custom-select" id="fakultas" style="width: 100%;">
-                                                <option selected>Choose...</option>
+                                            <select class="custom-select" id="fakultas" style="width: 100%;" name="fakultas">
+                                                <option value="" selected>Choose...</option>
                                                 <?php foreach ($fakultas as $f) : ?>
                                                     <option value="<?php echo $f['id']; ?>"><?php echo $f['nama']; ?></option>
                                                 <?php endforeach; ?>
@@ -195,8 +195,8 @@ if ($session->get('isLogin')) {
                                     <div class="form-group row">
                                         <label for="subjek" class="col-sm-3 col-form-label">Subjek</label>
                                         <div class="col-sm-9">
-                                            <select class="custom-select" id="subjek" style="width: 100%;">
-                                                <option selected>Choose...</option>
+                                            <select class="custom-select" id="subjek" style="width: 100%;" name="subjek">
+                                                <option value="" selected>Choose...</option>
                                                 <?php foreach ($subjek as $s) : ?>
                                                     <option value="<?php echo $s['id']; ?>"><?php echo $s['nama']; ?></option>
                                                 <?php endforeach; ?>
@@ -218,8 +218,8 @@ if ($session->get('isLogin')) {
                                     <div class="form-group row">
                                         <label for="jendok" class="col-sm-3 col-form-label">Jenis Dokumen</label>
                                         <div class="col-sm-9">
-                                            <select class="custom-select" id="jendok" style="width: 100%;">
-                                                <option selected>Choose...</option>
+                                            <select class="custom-select" id="jendok" style="width: 100%;" name="jendok">
+                                                <option value="" selected>Choose...</option>
                                                 <?php foreach ($jendok as $je) : ?>
                                                     <option value="<?php echo $je['id'] ?>"><?php echo $je['nama']; ?></option>
                                                 <?php endforeach; ?>

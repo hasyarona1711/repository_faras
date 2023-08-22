@@ -39,24 +39,22 @@
                             <p>Ukuran : <?php echo $a['size']; ?> Kb</p>
                             <?php if ($session->get('isLogin')) { ?>
                                 <?php if ($a['visible'] === "Anyone") { ?>
-                                    <button>Unduh</button>
-                                    <button>Lihat</button>
+                                    <button><a href="/home/unduhfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>Unduh</a></button>
+                                    <button><a href="/home/lihatfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a></button>
                                 <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
-                                    <button>Unduh</button>
-                                    <button>Lihat</button>
-                                <?php } else { ?>
+                                    <button><a href="/home/unduhfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>Unduh</a></button>
+                                    <button><a href="/home/lihatfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a></button> <?php } else { ?>
                                     <p>Repository Staff Only</p>
                                 <?php }
-                            } else { ?>
+                                                                                                                                                                            } else { ?>
                                 <?php if ($a['visible'] === "Anyone") { ?>
-                                    <button>Unduh</button>
-                                    <button>Lihat</button>
-                                <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
-                                    <button>Login Required</button>
+                                    <button><a href="/home/unduhfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>Unduh</a></button>
+                                    <button><a href="/home/lihatfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a></button> <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
+                                    <button><i class="fa fa-key" aria-hidden="true"></i>Login Required</button>
                                 <?php } else { ?>
                                     <p>Repository Staff Only</p>
                             <?php }
-                            } ?>
+                                                                                                                                                                            } ?>
 
                         </div>
                     </div>
@@ -125,7 +123,7 @@
     <div class="container">
         <div class="judul-dokumen">
             <h3><?php echo $dokumen['judul']; ?></h3>
-            <h5><?php echo $dokumen['penulis']; ?>,<?php foreach ($author as $auth) : ?>
+            <h5><?php echo $dokumen['penulis_depan']; ?> <?php echo $dokumen['penulis_belakang'] ?>,<?php foreach ($author as $auth) : ?>
                 <?php echo $auth['nama_depan']; ?> <?php echo $auth['nama_belakang']; ?>,
             <?php endforeach; ?>
             <?php echo $jendok['nama']; ?>. Unand
@@ -143,24 +141,21 @@
                             <p>Ukuran : <?php echo $a['size']; ?> Kb</p>
                             <?php if ($session->get('isLogin')) { ?>
                                 <?php if ($a['visible'] === "Anyone") { ?>
-                                    <button>Unduh</button>
-                                    <button>Lihat</button>
-                                <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
-                                    <button>Unduh</button>
-                                    <button>Lihat</button>
-                                <?php } else { ?>
+                                    <button><a href="/home/unduhfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>Unduh</a></button>
+                                    <button><a href="/home/lihatfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a></button> <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
+                                    <button><a href="/home/unduhfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>Unduh</a></button>
+                                    <button><a href="/home/lihatfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a></button> <?php } else { ?>
                                     <p>Repository Staff Only</p>
                                 <?php }
-                            } else { ?>
+                                                                                                                                                                            } else { ?>
                                 <?php if ($a['visible'] === "Anyone") { ?>
-                                    <button>Unduh</button>
-                                    <button>Lihat</button>
-                                <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
-                                    <button>Login Required</button>
+                                    <button><a href="/home/unduhfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>Unduh</a></button>
+                                    <button><a href="/home/lihatfile/<?php echo $a['judul']; ?>.pdf" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Lihat</a></button> <?php } elseif ($a['visible'] === "Registered Users Only") { ?>
+                                    <button><i class="fa fa-key" aria-hidden="true"></i>Login Required</button>
                                 <?php } else { ?>
                                     <p>Repository Staff Only</p>
                             <?php }
-                            } ?>
+                                                                                                                                                                            } ?>
 
                         </div>
                     </div>

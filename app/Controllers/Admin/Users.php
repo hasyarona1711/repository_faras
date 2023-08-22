@@ -23,7 +23,7 @@ class Users extends BaseController
     public function index()
     {
         //karena pakai join, jadi pakai koneksi langsung ke db. tidak menggunakan model
-        $query = $this->db->query('SELECT a.nim, a.nama, b.nama as jurusan, a.email FROM users as a JOIN jurusan as b on a.id_jurusan = b.id');
+        $query = $this->db->query('SELECT a.username, a.nama, b.nama as jurusan, a.email FROM users as a JOIN jurusan as b on a.id_jurusan = b.id');
         $result = $query->getResultObject();
         $jurusan = $this->jurusanModel->findAll();
         $data = [
@@ -34,12 +34,12 @@ class Users extends BaseController
     }
     public function add()
     {
-        $nim = $this->request->getVar('nim');
+        $username = $this->request->getVar('username');
         $jurusan = $this->request->getVar('jurusan');
         $nama = $this->request->getVar('nama');
         $email = $this->request->getVar('email');
         $pass = $this->request->getVar('password');
-        $query = $this->db->query("INSERT INTO users (`nim`, `id_jurusan`, `nama`, `email`, `password`) VALUES ('$nim','$jurusan','$nama','$email','$pass')");
+        $query = $this->db->query("INSERT INTO users (`username`, `id_jurusan`, `nama`, `email`, `password`) VALUES ('$username','$jurusan','$nama','$email','$pass')");
         $result = $this->db->affectedRows();
         if ($result != 1) {
             session()->setFlashdata('pesan', 'Data gagal ditambahkan.');

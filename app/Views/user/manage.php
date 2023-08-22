@@ -34,7 +34,7 @@ echo $this->section('contentuser');
                     <?php foreach ($dokumen as $d) : ?>
                         <tr>
                             <td><?php echo $d['updated_at']; ?></td>
-                            <td><?php echo $d['penulis'] ?></td>
+                            <td><?php echo $d['penulis_depan'] ?> <?php echo $d['penulis_belakang']; ?></td>
                             <td><?php echo $d['nama']; ?></td>
                             <td><?php echo $d['judul']; ?></td>
                             <td><?php echo $d['status']; ?></td>

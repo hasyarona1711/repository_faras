@@ -204,7 +204,10 @@ function showTab(n) {
   if (n == 3) {
     document.getElementById("nextBtn").style.display = "none";
     if(!validateForm()){
-      console.log(nosubjek);
+      if(notjurusan){
+        document.getElementById("validasi-form").style.display = "block";
+        document.getElementById("errorjur").style.display = "block";
+      }
       if(nosubjek){
         document.getElementById("validasi-form").style.display = "block";
         document.getElementById("errorsub").style.display = "block";
@@ -238,10 +241,12 @@ function showTab(n) {
 var nodetail = false;
 var nosubjek = false;
 var nofile = false;
+var notjurusan = false;
 function validateForm(){
   nodetail = false;
   nosubjek = false;
   nofile = false;
+  notjurusan = false;
   document.getElementById("validasi-form").style.display = "none";
   document.getElementById("errorsub").style.display = "none";
   document.getElementById("errordet").style.display = "none";
@@ -251,6 +256,13 @@ function validateForm(){
   var tab1 = x[0].getElementsByTagName("select");
   var tab2 = x[1].getElementsByClassName("harus");
   var tab3 = x[2].getElementsByTagName("select");
+  var jurusanuser = document.getElementById("jurusan-user");
+  var jurusaninput = document.getElementById("jurusan");
+  //cek apakah pilih jurusan sudah sesuai dengan jurusan user
+  if(jurusanuser.value != jurusaninput.value){
+    notjurusan = true;
+    valid = false;
+  }
   //cek apakah tab upload file sudah diisi
   for (i = 0; i< tab1.length; i++){
     if(tab1[i].value == ""){

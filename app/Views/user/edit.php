@@ -2,6 +2,7 @@
 $session = session();
 echo $this->extend('template');
 echo $this->section('contentuser');
+$user = $session->get('user');
 ?>
 <form action="/dokumen/updateItem/<?php echo $dokumen['id']; ?>" name="form-upload" method="post">
     <div class="content" style="background-color: white;">
@@ -54,6 +55,8 @@ echo $this->section('contentuser');
             <div class="tab">
                 <div class="form-tipe">
                     <div class="form-group row">
+                        <input type="hidden" id="jurusan-user" value="<?php echo $user['id_jurusan']; ?>">
+                        <input type="hidden" name="username" value="<?php echo $user['username']; ?>">
                         <label for="tipe-item" class="col-sm-2 col-form-label">Tipe Item</label>
                         <div class="col-sm-3">
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="tipe-item">
@@ -84,9 +87,8 @@ echo $this->section('contentuser');
                                     <p><?php echo $file['judul']; ?></p>
                                 </div>
                                 <div class="right">
-                                    <!-- <button type="button" class="settingbtn" data-toggle="modal" data-target="#settingModal<?php //echo $file['id']; 
-                                                                                                                                ?>"><i class="fa fa-cog" aria-hidden="true"></i>Settings</button> -->
-                                    <a href="/dokumen/hapusfiles/<?php echo $file['id']; ?>" class="deletebtn" onclick="return confirm('apakah anda yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
+                                    <button type="button" class="settingbtn" data-toggle="modal" data-target="#settingModal<?php echo $file['id']; ?>"><i class="fa fa-cog" aria-hidden="true"></i>Settings</button>
+                                    <a href="/dokumen/hapusfiles/<?php echo $file['id']; ?>/<?php echo $dokumen['id']; ?>" class="deletebtn" onclick="return confirm('apakah anda yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
                                 </div>
                             </div>
                     <?php endforeach;
@@ -98,7 +100,8 @@ echo $this->section('contentuser');
                                     <p><?php echo $file['judul']; ?></p>
                                 </div>
                                 <div class="right">
-                                    <a href="/dokumen/hapusfiles/<?php echo $file['id']; ?>" class="deletebtn" onclick="return confirm('apakah anda yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
+                                    <button type="button" class="settingbtn" data-toggle="modal" data-target="#settingModal<?php echo $file['id']; ?>"><i class="fa fa-cog" aria-hidden="true"></i>Settings</button>
+                                    <a href="/dokumen/hapusfiles/<?php echo $file['id']; ?>/<?php echo $dokumen['id']; ?>" class="deletebtn" onclick="return confirm('apakah anda yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -124,7 +127,7 @@ echo $this->section('contentuser');
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-2 col-form-label"></div>
-                    <div class="col-sm-7" id="author-container-edit" style="overflow-y:auto">
+                    <div class="col-sm-7" id="author-container" style="overflow-y:auto; display:block;">
                         <input type="hidden" name="jumlahauthor" id="jumlahauthor">
                         <?php if (!empty($author)) { ?>
                             <?php foreach ($author as $auth) : ?>
@@ -135,7 +138,7 @@ echo $this->section('contentuser');
                                         <input type="hidden" class="harus" name="namabelakang<?php echo $auth['id']; ?>" value="<?php echo $auth['nama_belakang']; ?>">
                                     </div>
                                     <div class="right-author">
-                                        <button onclick="return confirm('apakah anda yakin?');"><a href="/dokumen/deleteauthor/<?php echo $auth['id']; ?>" style="color:white;">Delete</a></button>
+                                        <button onclick="return confirm('apakah anda yakin?');"><a href="/dokumen/deleteauthor/<?php echo $auth['id']; ?>/<?php echo $dokumen['id']; ?>" style="color:white;">Delete</a></button>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -145,7 +148,7 @@ echo $this->section('contentuser');
                 <div class="row mb-3">
                     <label for="nim" class="col-sm-2 col-form-label">NIM*</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control harus" id="nim" name="nim" value="<?php echo $dokumen['id_user']; ?>">
+                        <input type="text" class="form-control harus" id="nim" name="nim" value="<?php echo $dokumen['nim']; ?>">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -292,6 +295,7 @@ echo $this->section('contentuser');
                             <div class="listerror" id="listerror">
                                 <p id="errorsub">You haven't filled out the required Subjek field</p>
                                 <p id="errordet">You haven't filled out the required Detail field</p>
+                                <p id="errorjur">Jurusan anda tidak sesuai dengan pilihan jurusan</p>
                             </div>
                         </div>
                     </div>
@@ -304,7 +308,7 @@ echo $this->section('contentuser');
                 </div>
                 <center>
                     <div class="validasi-sukses" id="validasi-sukses">
-                        <p>mengklik <b><i>Upload New Item</i></b> menunjukkan persetujuan Anda terhadap persyaratan ini.</p>
+                        <p>mengklik <b><i>Update Item</i></b> menunjukkan persetujuan Anda terhadap persyaratan ini.</p>
                     </div>
                 </center>
             </div>
@@ -313,7 +317,7 @@ echo $this->section('contentuser');
                     <div style="overflow:auto;">
                         <div>
                             <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                            <button type="submit" id="submitFile">Upload New Item</button>
+                            <button type="submit" id="submitFile">Update Item</button>
                             <button class="btncancel"><a href="/" style="color: white;">Cancel</a></button>
                             <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                         </div>
@@ -369,9 +373,10 @@ echo $this->section('contentuser');
                 <h5 class="modal-title fs-5" id="lampiranModalLabel">Tambah Lampiran</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <form action="/dokumen/savelampiran" method="post" enctype="multipart/form-data">
+            <form action="/dokumen/tambahlampiran" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="mb-3">
+                        <input type="hidden" value="<?php echo $dokumen['id']; ?>" name="id_item">
                         <label class="col-form-label" for="konten-file">Konten</label>
                         <div class="input-group">
                             <select class="custom-select" id="konten-file" name="konten-file">
@@ -452,7 +457,94 @@ echo $this->section('contentuser');
                         <h5 class="modal-title fs-5" id="settingModalLabel">Settings</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <form action="/dokumen/editlampiran" method="post" enctype="multipart/form-data">
+                    <form action="/dokumen/settinglampiran/<?php echo $dokumen['id']; ?>" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" name="id-file" value="<?php echo $file['id']; ?>">
+                            <div class="mb-3">
+                                <label class="col-form-label" for="konten-file">Konten</label>
+                                <div class="input-group">
+                                    <select class="custom-select" id="konten-file" name="konten-file">
+                                        <option selected value="<?php echo $file['content']; ?>"><?php echo $file['content']; ?></option>
+                                        <option>UNSPECIFIED</option>
+                                        <option value="Draft Version">Draft Version</option>
+                                        <option value="Submitted Version">Submitted Version</option>
+                                        <option value="Accepted Version">Accepted Version</option>
+                                        <option value="Published Version">Published Version</option>
+                                        <option value="Updated Version">Updated Version</option>
+                                        <option value="Supplemental Material">Supplemental Material</option>
+                                        <option value="Presentasion">Presentasion</option>
+                                        <option value="Cover Image">Cover Image</option>
+                                        <option value="Additional Metadata">Additional Metadata</option>
+                                        <option value="Bibliography">Bibliography</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label" for="tipe-file">Tipe</label>
+                                <div class="input-group">
+                                    <select class="custom-select" id="tipe-file" name="tipe-file">
+                                        <option selected value="<?php echo $file['type']; ?>"><?php echo $file['type']; ?></option>
+                                        <option value="Text">Text</option>
+                                        <option value="Spreadsheet">Spreadsheet</option>
+                                        <option value="Slideshow">Slideshow</option>
+                                        <option value="Image">Image</option>
+                                        <option value="Video">Video</option>
+                                        <option value="Audio">Audio</option>
+                                        <option value="Archive">Archive</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deskripsi-file" class="col-form-label">Deskripsi</label>
+                                <input type="textarea" class="form-control" id="deskripsi-file" name="deskripsi-file" value="<?php echo $file['deskripsi']; ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label" for="visible-file">Visible To</label>
+                                <div class="input-group">
+                                    <select class="custom-select" id="visible-file" name="visible-file">
+                                        <option selected value="<?php echo $file['visible']; ?>"><?php echo $file['visible']; ?></option>
+                                        <option value="Anyone">Anyone</option>
+                                        <option value="Registered Users Only">Registered Users Only</option>
+                                        <option value="Repository Staff Only">Repository Staff Only</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label" for="bahasa-file">Language</label>
+                                <div class="input-group">
+                                    <select class="custom-select" id="bahasa-file" name="bahasa-file">
+                                        <option selected value="<?php echo $file['language']; ?>"><?php echo $file['language']; ?></option>
+                                        <option value="English">English</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="submit-modal" value="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<?php endforeach;
+} ?>
+
+<!-- modal untuk setting files baru -->
+<?php if (!empty($filesbaru)) {
+    foreach ($filesbaru as $file) : ?>
+        <div class="modal fade" id="settingModal<?php echo $file['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="settingModalLabel">Settings</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form action="/dokumen/settingfilebaru/<?php echo $dokumen['id']; ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" name="id-file" value="<?php echo $file['id']; ?>">
                             <div class="mb-3">

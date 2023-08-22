@@ -19,8 +19,8 @@
         <div class="content-panduan">
             <h4>Panduan Website</h4>
             <div class="isi-content-panduan">
-                <p>Repositori institusi Universitas Andalas merupakan media penyimpanan semua karya sivitas akademika berupa laporan penelitian mahasiswa (skripsi, tesis, disertasi), penelitian dosen dan staf. Repositori dilayankan secara open access (ketentuan berlaku), di mana pengguna wajib Login untuk dokumen tertentu. Panduan menggunakan repositori bisa diunduh <a href="#">di sini</a>.</p>
-                <p>Panduan mengupload dokumen Skripsi/tesis/disertasi bisa diunduh <a href="#">di sini</a>.</p>
+                <p>Repositori institusi Universitas Andalas merupakan media penyimpanan semua karya sivitas akademika berupa laporan penelitian mahasiswa (skripsi, tesis, disertasi), penelitian dosen dan staf. Repositori dilayankan secara open access (ketentuan berlaku), di mana pengguna wajib Login untuk dokumen tertentu. Panduan menggunakan repositori bisa diunduh <a href="/home/panduan1" target="_blank" style="text-decoration: underline;">di sini</a>.</p>
+                <p>Panduan mengupload dokumen Skripsi/tesis/disertasi bisa diunduh <a href="home/panduan2" target="_blank" style="text-decoration: underline;">di sini</a>.</p>
             </div>
         </div>
     </center>

@@ -1,8 +1,12 @@
 <?php echo $this->extend('template'); ?>
 <?php
 $x = 0;
+$n = 0;
 foreach ($dokumen as $dok) {
     $x++;
+    if ($x <= 10) {
+        $n = $x;
+    }
 }
 ?>
 <?php echo $this->section('content'); ?>
@@ -23,7 +27,7 @@ foreach ($dokumen as $dok) {
         </div>
         <div class="content-table">
             <h4><?php echo $title; ?> <?php echo $keyword; ?></h4>
-            <h6>Menampilkan <?php echo $x; ?> dari <?php echo $x; ?> Dokumen</h6>
+            <h6>Menampilkan <?php echo $n; ?> dari <?php echo $x; ?> Dokumen</h6>
             <table class="table mt-3">
                 <tbody>
                     <?php
@@ -33,7 +37,7 @@ foreach ($dokumen as $dok) {
                             <th><?php echo $i++; ?></th>
                             <td>
                                 <a href="/dokumen/detail/<?php echo $d['id']; ?>">
-                                    <?php echo $d['penulis']; ?>. <?php echo $d['tahun']; ?>. <?php echo $d['judul']; ?>. <?php echo $d['nama']; ?>. Universitas Andalas
+                                    <?php echo $d['penulis_depan']; ?> <?php echo $d['penulis_belakang']; ?>. <?php echo $d['tahun']; ?>. <?php echo $d['judul']; ?>. <?php echo $d['nama']; ?>. Universitas Andalas
                                 </a>
                             </td>
                         </tr>
@@ -41,6 +45,7 @@ foreach ($dokumen as $dok) {
                 </tbody>
             </table>
         </div>
+        <?php echo $pager->links('item', 'dokumen_pagination'); ?>
     </div>
 </center>
 <?php echo $this->endSection(); ?>
@@ -62,7 +67,7 @@ foreach ($dokumen as $dok) {
         </div>
         <div class="content-table">
             <h4><?php echo $title; ?> <?php echo $keyword; ?></h4>
-            <h6>Menampilkan <?php echo $x; ?> dari <?php echo $x; ?> Dokumen</h6>
+            <h6>Menampilkan <?php echo $n; ?> dari <?php echo $x; ?> Dokumen</h6>
             <table class="table mt-3">
                 <tbody>
                     <?php
@@ -72,7 +77,7 @@ foreach ($dokumen as $dok) {
                             <th><?php echo $i++; ?></th>
                             <td>
                                 <a href="/dokumen/detail/<?php echo $d['id']; ?>">
-                                    <?php echo $d['penulis']; ?>. <?php echo $d['tahun']; ?>. <?php echo $d['judul']; ?>. <?php echo $d['nama']; ?>. Universitas Andalas
+                                    <?php echo $d['penulis_depan']; ?> <?php echo $d['penulis_belakang']; ?>. <?php echo $d['tahun']; ?>. <?php echo $d['judul']; ?>. <?php echo $d['nama']; ?>. Universitas Andalas
                                 </a>
                             </td>
                         </tr>
@@ -80,6 +85,8 @@ foreach ($dokumen as $dok) {
                 </tbody>
             </table>
         </div>
+        <?php echo $pager->links('item', 'dokumen_pagination'); ?>
+
     </div>
 </center>
 <?php echo $this->endSection(); ?>

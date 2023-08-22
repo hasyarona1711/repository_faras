@@ -31,7 +31,7 @@ echo $this->section('contentuser');
                         </div>
                     </center>
                     <p class="penprev">
-                        <?php echo $dokumen['penulis']; ?>,
+                        <?php echo $dokumen['penulis_belakang']; ?>, <?php echo $dokumen['penulis_depan']; ?>,
                         <?php if ($author) {
                             foreach ($author as $a) {
                                 echo $a['nama_depan']; ?> <?php echo $a['nama_belakang']; ?>,
@@ -109,21 +109,21 @@ echo $this->section('contentuser');
                     <tr>
                         <td>Upload</td>
                         <td class="list-upload-preview">: <?php foreach ($attachment as $att) : ?>
-                                <?php echo $att['judul']; ?><br>
+                                <?php echo $att['judul']; ?>(<?php echo $att['visible']; ?>)<br>
                             <?php endforeach; ?>
                         </td>
                     </tr>
                     <tr>
                         <td>Detail</td>
-                        <td>: ?</td>
+                        <td>: </td>
                     </tr>
                     <tr>
                         <td>Nama</td>
-                        <td>: <?php echo $dokumen['penulis']; ?></td>
+                        <td>: <?php echo $dokumen['penulis_depan']; ?> <?php echo $dokumen['penulis_belakang']; ?></td>
                     </tr>
                     <tr>
                         <td>NIM</td>
-                        <td>: <?php echo $dokumen['id_user']; ?></td>
+                        <td>: <?php echo $dokumen['nim']; ?></td>
                     </tr>
                     <tr>
                         <td>Judul</td>
@@ -135,7 +135,7 @@ echo $this->section('contentuser');
                     </tr>
                     <tr>
                         <td>Tipe Tesis</td>
-                        <td>: <?php echo $tipe['nama']; ?></td>
+                        <td>: <?php echo $jendok['nama']; ?></td>
                     </tr>
                     <tr>
                         <td>Jenjang</td>
